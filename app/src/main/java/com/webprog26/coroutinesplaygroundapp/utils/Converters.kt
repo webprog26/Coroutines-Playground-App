@@ -11,7 +11,7 @@ const val ID = "id"
 const val NAME = "name";
 const val USER_NAME = "username"
 const val EMAIL = "email"
-const val ADDRESS ="address"
+const val ADDRESS = "address"
 const val STREET = "street"
 const val SUITE = "suite"
 const val CITY = "city"
@@ -84,4 +84,44 @@ fun JSONObject.toCompany(): Company? {
         e.printStackTrace()
     }
     return null
+}
+
+fun User.toJSONObject(): JSONObject {
+    val userJSONObject = JSONObject();
+    userJSONObject.put(ID, id)
+    userJSONObject.put(NAME, name)
+    userJSONObject.put(USER_NAME, username)
+    userJSONObject.put(EMAIL, email)
+    userJSONObject.put(ADDRESS, address?.toJSONObject().toString())
+    userJSONObject.put(PHONE, phone)
+    userJSONObject.put(WEBSITE, website)
+    userJSONObject.put(COMPANY, company?.toJSONObject().toString())
+
+    return userJSONObject
+}
+
+fun Address.toJSONObject(): JSONObject {
+    val addressJSONObject = JSONObject()
+    addressJSONObject.put(STREET, street)
+    addressJSONObject.put(SUITE, suite)
+    addressJSONObject.put(CITY, city)
+    addressJSONObject.put(ZIPCODE, zipCode)
+    addressJSONObject.put(GEO, geo?.toJSONObject())
+
+    return addressJSONObject
+}
+
+fun Geo.toJSONObject(): JSONObject {
+    val geoJSONObject = JSONObject()
+    geoJSONObject.put(LATITUDE, latitude)
+    geoJSONObject.put(LONGITUDE, longitude)
+    return geoJSONObject
+}
+
+fun Company.toJSONObject(): JSONObject {
+    val companyJSONObject = JSONObject()
+    companyJSONObject.put(COMPANY_NAME, name)
+    companyJSONObject.put(COMPANY_CATCH_PHRASE, catchPhrase)
+    companyJSONObject.put(COMPANY_BS, bs)
+    return companyJSONObject
 }
