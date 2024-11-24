@@ -1,9 +1,13 @@
 package com.webprog26.coroutinesplaygroundapp.data_source.data_model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "users")
 data class User(
-    val id: Long,
+    @PrimaryKey val id: Long,
     val name: String,
-    val userName: String,
+    val username: String,
     val email: String,
     val address: Address?,
     val phone: String,

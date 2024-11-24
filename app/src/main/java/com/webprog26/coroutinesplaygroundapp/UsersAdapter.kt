@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.webprog26.coroutinesplaygroundapp.data_source.data_model.User
-import com.webprog26.coroutinesplaygroundapp.utils.logDebug
 
 class UsersAdapter: RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
@@ -19,7 +18,6 @@ class UsersAdapter: RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
         fun bind(user: User?) {
-            logDebug("bind(): user = $user")
             if (user != null) {
                 itemView.findViewById<TextView>(R.id.tvUserId).text = user.id.toString()
                 itemView.findViewById<TextView>(R.id.tvUserName).text = user.name

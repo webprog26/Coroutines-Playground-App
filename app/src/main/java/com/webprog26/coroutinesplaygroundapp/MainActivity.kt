@@ -1,6 +1,7 @@
 package com.webprog26.coroutinesplaygroundapp
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,15 +10,20 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.webprog26.coroutinesplaygroundapp.data_source.DataSource
-import com.webprog26.coroutinesplaygroundapp.data_source.data_model.User
-import com.webprog26.coroutinesplaygroundapp.utils.logDebug
+import com.webprog26.coroutinesplaygroundapp.data_source.LocalDataProvider
+import com.webprog26.coroutinesplaygroundapp.data_source.LocalDataUpdater
+import com.webprog26.coroutinesplaygroundapp.data_source.NetworkDataProvider
+import com.webprog26.coroutinesplaygroundapp.data_source.database.UsersDatabase
+import com.webprog26.coroutinesplaygroundapp.network.createUsersApi
 
 class MainActivity : AppCompatActivity() {
 
     private val adapter = UsersAdapter()
 
     private val viewModel: UsersViewModel by viewModels {
-        ViewModelFactory(DataSource())
+        ViewModelFactory(DataSource(LocalDataProvider(UsersDatabase.getInstance(applicationContext)), NetworkDataProvider(
+            createUsersApi()
+        ), LocalDataUpdater((UsersDatabase.getInstance(applicationContext)))))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,11 +40,17 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
 
-        viewModel.usersListData.observe(this) { users: List<User> ->
-            users.forEach {
-                logDebug("user observed: $it")
+        viewModel.usersListData.observe(this) {uiState ->
+            when (uiState) {
+                is UiState.Success -> {
+                    adapter.usersList = uiState.users
+
+                }
+
+                is UiState.Error -> {
+                    Toast.makeText(applicationContext, uiState.message, Toast.LENGTH_LONG).show()
+                }
             }
-            adapter.usersList = users
         }
 
         viewModel.loadUsers()
