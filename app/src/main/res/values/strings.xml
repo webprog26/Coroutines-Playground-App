@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Coroutines Playground App</string>
+    <string name="users_list_btn_text">Users list</string>
 </resources>
