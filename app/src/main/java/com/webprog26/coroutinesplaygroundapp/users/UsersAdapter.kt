@@ -20,8 +20,8 @@ class UsersAdapter: RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
         fun bind(user: User?) {
             if (user != null) {
-                itemView.findViewById<TextView>(R.id.tvUserId).text = user.id.toString()
-                itemView.findViewById<TextView>(R.id.tvUserName).text = user.name
+                itemView.findViewById<TextView>(R.id.tv_user_name).text = user.username
+                itemView.findViewById<TextView>(R.id.tv_name).text = user.name
             }
         }
     }
