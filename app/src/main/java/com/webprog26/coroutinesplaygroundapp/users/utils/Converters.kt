@@ -88,40 +88,40 @@ fun JSONObject.toCompany(): Company? {
 
 fun User.toJSONObject(): JSONObject {
     val userJSONObject = JSONObject();
-    userJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.ID, id)
-    userJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.NAME, name)
-    userJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.USER_NAME, username)
-    userJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.EMAIL, email)
-    userJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.ADDRESS, address?.toJSONObject().toString())
-    userJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.PHONE, phone)
-    userJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.WEBSITE, website)
-    userJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.COMPANY, company?.toJSONObject().toString())
+    userJSONObject.put(ID, id)
+    userJSONObject.put(NAME, name)
+    userJSONObject.put(USER_NAME, username)
+    userJSONObject.put(EMAIL, email)
+    userJSONObject.put(ADDRESS, address?.toJSONObject().toString())
+    userJSONObject.put(PHONE, phone)
+    userJSONObject.put(WEBSITE, website)
+    userJSONObject.put(COMPANY, company?.toJSONObject().toString())
 
     return userJSONObject
 }
 
 fun Address.toJSONObject(): JSONObject {
     val addressJSONObject = JSONObject()
-    addressJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.STREET, street)
-    addressJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.SUITE, suite)
-    addressJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.CITY, city)
-    addressJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.ZIPCODE, zipCode)
-    addressJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.GEO, geo?.toJSONObject())
+    addressJSONObject.put(STREET, street)
+    addressJSONObject.put(SUITE, suite)
+    addressJSONObject.put(CITY, city)
+    addressJSONObject.put(ZIPCODE, zipcode)
+    addressJSONObject.put(GEO, geo?.toJSONObject())
 
     return addressJSONObject
 }
 
 fun Geo.toJSONObject(): JSONObject {
     val geoJSONObject = JSONObject()
-    geoJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.LATITUDE, latitude)
-    geoJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.LONGITUDE, longitude)
+    geoJSONObject.put(LATITUDE, lat)
+    geoJSONObject.put(LONGITUDE, lng)
     return geoJSONObject
 }
 
 fun Company.toJSONObject(): JSONObject {
     val companyJSONObject = JSONObject()
-    companyJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.COMPANY_NAME, name)
-    companyJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.COMPANY_CATCH_PHRASE, catchPhrase)
-    companyJSONObject.put(com.webprog26.coroutinesplaygroundapp.users.utils.COMPANY_BS, bs)
+    companyJSONObject.put(COMPANY_NAME, name)
+    companyJSONObject.put(COMPANY_CATCH_PHRASE, catchPhrase)
+    companyJSONObject.put(COMPANY_BS, bs)
     return companyJSONObject
 }
