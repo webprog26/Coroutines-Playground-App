@@ -51,6 +51,9 @@ dependencies {
     implementation (libs.retrofit)
     implementation (libs.gson)
     implementation (libs.converter.gson)
+    implementation (libs.glide)
+    // Glide v4 uses this new annotation processor -- see https://bumptech.github.io/glide/doc/generatedapi.html
+    annotationProcessor (libs.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.androidx.core.testing)
     testImplementation(libs.kotlinx.coroutines.test)
