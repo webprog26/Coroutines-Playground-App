@@ -3,6 +3,7 @@ package com.webprog26.coroutinesplaygroundapp.users
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.webprog26.coroutinesplaygroundapp.R
@@ -28,8 +29,16 @@ class UsersListActivity : BaseActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+
+        recyclerView.addItemDecoration(
+            DividerItemDecoration(
+                baseContext,
+                layoutManager.orientation
+            )
+        )
 
         viewModel.usersListData.observe(this) {uiState ->
             when (uiState) {
